@@ -2,8 +2,7 @@
 import com.proj.Calculator;
 import org.junit.jupiter.api.Test;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
@@ -31,5 +30,11 @@ public class CalculatorTest {
     @Test
     public void shouldReturnSumValue_withCustomDelimiter_onMultipleStringValue() {
         assertEquals(6, Calculator.add("//,\n1,2,3"));
+    }
+    @Test
+    public void shouldRaiseExceptionOnNegativeValues(){
+     Exception exception =   assertThrows(NumberFormatException.class, ()-> {
+            Calculator.add("-1,2,3");
+        });
     }
 }

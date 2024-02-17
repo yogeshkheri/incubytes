@@ -16,11 +16,29 @@ public class Calculator {
                 m.matches();
                 String customDelimiter = m.group(1);
                 String numbers = m.group(2);
-                return Arrays.stream(numbers.split(customDelimiter)).mapToInt(Integer::valueOf).sum();
+                List<String> testList = Arrays.asList(numbers.split(customDelimiter));
+                checkNegativeNumbers(testList);
+                return testList.stream().mapToInt(Integer::valueOf).sum();
             }else {
                 List<String> testList = Arrays.asList(text.split(",|\n"));
+                checkNegativeNumbers(testList);
                 return testList.stream().mapToInt(Integer::valueOf).sum();
             }
+        }
+    }
+
+    private static void checkNegativeNumbers(List<String> data){
+        int[] dataArray = data.stream().mapToInt(Integer::valueOf).toArray();
+        int[] negativeNumberArray = new int[dataArray.length];
+        int count = 0;
+        for (int j : dataArray) {
+            if (j < 0) {
+                negativeNumberArray[count] = j;
+                count++;
+            }
+        }
+        if(count > 0){
+            throw new NumberFormatException("negative numbers not allowed "+Arrays.toString(negativeNumberArray));
         }
     }
 }
