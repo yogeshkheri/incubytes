@@ -11,4 +11,9 @@ public class CalculatorTest {
     public void shouldReturnZero_onEmptyString() {
         assertEquals(0, Calculator.add(""));
     }
+
+    @Test
+    public void shouldReturnOne_onStringValue() {
+        assertEquals(1, Calculator.add("1"));
+    }
 }
