@@ -36,5 +36,9 @@ public class CalculatorTest {
      Exception exception =   assertThrows(NumberFormatException.class, ()-> {
             Calculator.add("-1,2,3");
         });
+     String excpectedMessage = "negative numbers not allowed [-1]";
+     String actualMessage = exception.getMessage();
+
+     assertTrue(actualMessage.contains(excpectedMessage));
     }
 }

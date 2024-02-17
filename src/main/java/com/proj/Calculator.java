@@ -1,6 +1,7 @@
 package com.proj;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -29,16 +30,16 @@ public class Calculator {
 
     private static void checkNegativeNumbers(List<String> data){
         int[] dataArray = data.stream().mapToInt(Integer::valueOf).toArray();
-        int[] negativeNumberArray = new int[dataArray.length];
+        List<Integer> negativeNumberList = new ArrayList<>();
         int count = 0;
         for (int j : dataArray) {
             if (j < 0) {
-                negativeNumberArray[count] = j;
+                negativeNumberList.add(j);
                 count++;
             }
         }
         if(count > 0){
-            throw new NumberFormatException("negative numbers not allowed "+Arrays.toString(negativeNumberArray));
+            throw new NumberFormatException("negative numbers not allowed "+negativeNumberList.toString());
         }
     }
 }
