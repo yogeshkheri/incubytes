@@ -9,7 +9,7 @@ public class Calculator {
         if (text.isEmpty()) { // condition for empty string
             return 0;
         } else if (text.contains(",")) { // condition for any number values like 1,2,3
-            List<String> testList = Arrays.asList(text.split(","));
+            List<String> testList = Arrays.asList(text.split(",|\n"));
             return testList.stream().mapToInt(Integer::valueOf).sum();
         } else { // condition for other values
             return convertToInt(text);
